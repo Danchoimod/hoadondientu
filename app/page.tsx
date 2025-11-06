@@ -47,7 +47,7 @@ export default function Home() {
 
   const handleSearch = () => {
     // Kiểm tra nếu tên miền và mã bảo mật đúng
-    if (taxCode.toLowerCase() === 'danhoabridal.com' && invoiceNumber === '1') {
+    if (taxCode.toLowerCase() === 'danhoabridal.com' && invoiceNumber === '101125') {
       setShowResult(true);
       setShowPayment(false);
       // Lấy trạng thái thanh toán từ Firestore
