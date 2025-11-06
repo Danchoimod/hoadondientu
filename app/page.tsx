@@ -117,7 +117,7 @@ export default function Home() {
   };
 
   // Update invoice data status based on Firebase
-  const currentStatus = paymentStatus === 1 ? 'Đã thanh toán' : 'Chưa thanh toán';
+  const currentStatus = paymentStatus === 1 ? 'Đã thanh toán' : 'chờ thanh toán';
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
