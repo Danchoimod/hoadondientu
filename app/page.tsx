@@ -369,7 +369,7 @@ export default function Home() {
                     )}
                   </>
                 ) : (
-                  <div className="space-y-4">
+                    <div className="space-y-4">
                     <h3 className={`text-base sm:text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                       Thông tin thanh toán
                     </h3>
@@ -377,6 +377,7 @@ export default function Home() {
                     <div className="flex flex-col items-center gap-4">
                       <div className={`p-3 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-white border-2 border-gray-200'}`}>
                         <Image 
+                          id="qr-code-image"
                           src={invoiceData.qrCode} 
                           alt="VietQR Payment Code" 
                           width={280}
@@ -386,7 +387,23 @@ export default function Home() {
                         />
                       </div>
                       
-                      <div className={`w-full p-4 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-blue-50'} space-y-2 text-sm sm:text-base`}>
+                      {/* Nút lưu mã QR */}
+                      <button
+                        onClick={() => {
+                          const link = document.createElement('a');
+                          link.href = invoiceData.qrCode;
+                          link.download = `QR_${invoiceData.domain}_${formatCurrency(invoiceData.total)}.jpg`;
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                        }}
+                        className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Lưu mã QR
+                      </button>                      <div className={`w-full p-4 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-blue-50'} space-y-2 text-sm sm:text-base`}>
                         <div className="text-center mb-3">
                           <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                             Quét mã QR để thanh toán qua VietQR - Napas 247
